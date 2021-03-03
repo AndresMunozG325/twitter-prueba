@@ -14,7 +14,7 @@
                 <div class="col-md-12">
                     <span><%= tweet.contents%></span>
                 </div>  
-                
+                <p><%= tweet.likes.count %> <%= (tweet.likes.count) == 1 ? 'Like' : 'Likes'%></p>
                 <div class="col-md-12 small">
                     <span><strong>Created by:</strong> <span class="font-weight-light"> <%= tweet.user_id %></span></span>
                     <span><strong>on </strong> <span class="font-weight-light"><%= tweet.created_at %></span></span>
