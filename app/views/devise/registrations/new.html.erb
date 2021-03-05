@@ -10,12 +10,12 @@
 
   <div class="field">
     <%= f.label :name, 'Name' %><br />
-    <%= f.text_field :name, autocomplete: "Name" %>
+    <%= f.text_field :name, autocomplete: "Name", :required => true %>
   </div>
 
   <div class="field">
     <%= f.label :profile_picture, 'Profile Picture(url)' %><br />
-    <%= f.text_field :profile_picture, autocomplete: "Profile picture" %>
+    <%= f.url_field :profile_picture, autocomplete: "Profile picture" %>
   </div>
 
   <div class="field">

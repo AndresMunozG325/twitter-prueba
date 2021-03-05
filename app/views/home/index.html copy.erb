@@ -1,0 +1,28 @@
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <div class="jumbotron">
+            <h1 class="display-4">Welcome to Twitter!</h1> 
+            <hr class="my-4">
+        </div>
+    </div>
+</div>
+
+
+
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <% @tweets.each do |tweet| %> 
+            <div class="row">
+                <div class="col-md-12">
+                    <span><%= tweet.contents%></span>
+                </div>  
+                <p><%= tweet.likes.count %> <%= (tweet.likes.count) == 1 ? 'Like' : 'Likes'%></p>
+                <div class="col-md-12 small">
+                    <span><strong>Created by:</strong> <span class="font-weight-light"> <%= tweet.user_id %></span></span>
+                    <span><strong>on </strong> <span class="font-weight-light"><%= tweet.created_at %></span></span>
+                </div>
+            </div>
+        <% end %>
+        <%= paginate @tweets %>
+    </div>
+</div>

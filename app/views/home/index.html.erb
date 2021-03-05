@@ -7,20 +7,54 @@
     </div>
 </div>
 
+<%= render 'tweets/form', tweet: @tweet %>
+
 <div class="row">
     <div class="col-md-8 offset-md-2">
         <% @tweets.each do |tweet| %> 
             <div class="row">
                 <div class="col-md-12">
-                    <span><%= tweet.contents%></span>
+                    <table class="table table-borderless">
+                        <tbody>
+                            <tr>
+                                <td> <%= image_tag tweet.user.profile_picture %> </td>
+                                <td><span><strong><%= tweet.user.name %></strong> <span class="font-weight-light"> </span></span></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td><span><%= tweet.contents%></span></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>Boton Like</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td><p><%= tweet.likes.count %> <%= (tweet.likes.count) == 1 ? 'Like' : 'Likes'%></p></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>retweets</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td><span><strong>on </strong> <span class="font-weight-light"><%= tweet.created_at %></span></span></td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>  
-                <p><%= tweet.likes.count %> <%= (tweet.likes.count) == 1 ? 'Like' : 'Likes'%></p>
+                <!--
                 <div class="col-md-12 small">
-                    <span><strong>Created by:</strong> <span class="font-weight-light"> <%= tweet.user_id %></span></span>
-                    <span><strong>on </strong> <span class="font-weight-light"><%= tweet.created_at %></span></span>
+                    
+                    
                 </div>
+                -->
             </div>
         <% end %>
         <%= paginate @tweets %>
     </div>
 </div>
+
+
+
+
