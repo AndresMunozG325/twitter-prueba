@@ -63,8 +63,7 @@ class TweetsController < ApplicationController
   end
 
   def retweet
-    @tweet.tweet_id = tweet_id 
-    retweet = Tweet.new(tweet_id: tweet.tweet_id user: current_user)
+    #retweet = Tweet.new(tweet_id: @tweet.tweet_id user: current_user)
   end
 
 

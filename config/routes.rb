@@ -3,7 +3,7 @@ Rails.application.routes.draw do
     resources :likes
     post 'retweet', to: 'tweets/retweet'
   end
-  
+  get 'tweets/index'
   devise_for :users
   get 'home/index'
   root to: "home#index"
