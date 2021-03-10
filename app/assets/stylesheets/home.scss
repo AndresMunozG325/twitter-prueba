@@ -11,7 +11,7 @@
 }
 
 html {
-  background: lightblue;
+  background: #007bff;
 }
 
 body {
@@ -22,4 +22,8 @@ body {
   .bd-placeholder-img-lg {
     font-size: 3.5rem;
   }
+}
+#p_name {
+  color: white;
+  font-weight: 600;
 }
