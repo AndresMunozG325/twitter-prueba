@@ -12,25 +12,9 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :contents %>
-    <%= form.text_area :contents %>
+    <%= form.text_area :contents, size: "30x5", placeholder: "What's happening? " %>
   </div>
-
-  <!-- 
-  
-  <div class="field">
-    #<%= form.label :tweet_id %>
-    #<%= form.number_field :tweet_id %>
-  </div>
--->
-<!--
-  <div class="field">
-    #<%= form.label :user_id %> <p> <%=current_user%></p>
-    #<%= form.text_field :user_id %>
-  </div>
--->
-
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit("Tweet") %>
   </div>
 <% end %>

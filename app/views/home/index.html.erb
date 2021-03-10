@@ -6,55 +6,54 @@
         </div>
     </div>
 </div>
-
-<%= render 'tweets/form', tweet: @tweet %>
-
 <div class="row">
     <div class="col-md-8 offset-md-2">
+        <div class="col-md-8 mx-auto">
+            <table class="table table-borderless">
+                <tbody>
+                    <tr>
+                        <%= render 'tweets/form', tweet: @tweet %>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
         <% @tweets.each do |tweet| %> 
             <div class="row">
                 <div class="col-md-12">
-                    <table class="table table-borderless">
-                        <tbody>
-                            <tr>
-                                <td> <%= image_tag tweet.user.profile_picture %> </td>
-                                <td><span><strong><%= tweet.user.name %></strong> <span class="font-weight-light"> </span></span></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td><span><%= tweet.contents%></span></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td>Boton Like</td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td><p><%= tweet.likes.count %> <%= (tweet.likes.count) == 1 ? 'Like' : 'Likes'%></p></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td>retweets</td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td><span><strong>on </strong> <span class="font-weight-light"><%= tweet.created_at %></span></span></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>  
-                <!--
-                <div class="col-md-12 small">
-                    
-                    
-                </div>
-                -->
+                    <div class="tweet-wrap">
+                        <div class="tweet-header">
+                            <%= image_tag tweet.user.profile_picture, :class => "avator" %>
+                            <div class="tweet-header-info">
+                                <strong><%= tweet.user.name %></strong><span><%= tweet.created_at %></span>
+                                <p><%= tweet.contents%></p>
+                            </div>
+                        </div>
+                        <div class="tweet-info-counts">
+                            <div class="likes">
+                                <!--<svg class="feather feather-heart sc-dnqmqq jxshSx" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>-->
+                                <% pre_like = tweet.likes.find { |like| like.user_id == current_user.id} %>
+                                <% if pre_like %>
+                                    <%= button_to 'Unlike', tweet_like_path(tweet, pre_like), method: :delete %>
+                                <% else %>
+                                    <%= button_to 'Like', tweet_likes_path(tweet), method: :post %>
+                                <% end %>
+
+                                
+                                <div class="likes-count">
+                                    <%= tweet.likes.count %> <%= (tweet.likes.count) == 1 ? 'Like' : 'Likes'%>
+                                </div>
+                            </div>
+                            <div class="retweets">
+                                <svg class="feather feather-repeat sc-dnqmqq jxshSx" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="17 1 21 5 17 9"></polyline><path d="M3 11V9a4 4 0 0 1 4-4h14"></path><polyline points="7 23 3 19 7 15"></polyline><path d="M21 13v2a4 4 0 0 1-4 4H3"></path></svg>
+                                <div class="retweet-count">
+                                    cant retweets
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>    
             </div>
         <% end %>
         <%= paginate @tweets %>
     </div>
 </div>
-
-
-
-
