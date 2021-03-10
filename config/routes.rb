@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   resources :tweets do
     resources :likes
+    post 'retweet', to: 'tweets/retweet'
   end
+  
   devise_for :users
   get 'home/index'
   root to: "home#index"

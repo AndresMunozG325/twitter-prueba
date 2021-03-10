@@ -5,6 +5,7 @@ class TweetsController < ApplicationController
   def index
     @tweets = Tweet.all
     @user = current_user
+    
   end
 
   # GET /tweets/1 or /tweets/1.json
@@ -24,7 +25,8 @@ class TweetsController < ApplicationController
   def create
     @tweet = Tweet.new(tweet_params)
     @tweet.user = current_user
-  
+    
+    
 
     respond_to do |format|
       if @tweet.save
@@ -59,6 +61,12 @@ class TweetsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def retweet
+    @tweet.tweet_id = tweet_id 
+    retweet = Tweet.new(tweet_id: tweet.tweet_id user: current_user)
+  end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

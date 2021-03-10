@@ -35,7 +35,7 @@
                         <div class="tweet-header">
                             <%= image_tag tweet.user.profile_picture, :class => "avator" %>
                             <div class="tweet-header-info">
-                                <strong><%= tweet.user.name %></strong><span><%= distance_of_time_in_words(Time.now, tweet.created_at) %></span>
+                                <strong><%= tweet.user.name %></strong><span><%= distance_of_time_in_words(Time.now, tweet.created_at)+ ' ago' %></span>
                                 <p><%= tweet.contents%></p>
                             </div>
                         </div>
@@ -58,7 +58,8 @@
                                 </div>
                             </div>
                             <div class="retweets">
-                                <svg class="feather feather-repeat sc-dnqmqq jxshSx" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="17 1 21 5 17 9"></polyline><path d="M3 11V9a4 4 0 0 1 4-4h14"></path><polyline points="7 23 3 19 7 15"></polyline><path d="M21 13v2a4 4 0 0 1-4 4H3"></path></svg>
+                                <%= link_to(tweet_retweet_path(tweet), method: :post)do%><i class="fas fa-retweet" style="color:red;"></i><% end %>
+                               <!-- <svg class="feather feather-repeat sc-dnqmqq jxshSx" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="17 1 21 5 17 9"></polyline><path d="M3 11V9a4 4 0 0 1 4-4h14"></path><polyline points="7 23 3 19 7 15"></polyline><path d="M21 13v2a4 4 0 0 1-4 4H3"></path></svg>-->
                                 <div class="retweet-count">
                                     cant retweets
                                 </div>
