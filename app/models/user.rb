@@ -6,4 +6,13 @@ class User < ApplicationRecord
 
   has_many :tweets
   has_many :likes, dependent: :destroy
+  has_many :friends
+
+  def find_friendship(user)
+    if self.friends.where(friend_id:user.id).count > 0
+      return true
+    else
+      return false
+    end
+  end
 end
