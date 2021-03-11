@@ -36,7 +36,7 @@
                             <%= image_tag tweet.user.profile_picture, :class => "avator" %>
                             <div class="tweet-header-info">
                                 <strong><%= tweet.user.name %></strong><span> <%= link_to "Created #{time_ago_in_words(tweet.created_at)} ago", tweet %> 
-                                <!--<%= distance_of_time_in_words(Time.now, tweet.created_at)+ ' ago' %></span>-->
+                                
                                 <p><%= tweet.contents%></p>
                             </div>
                         </div>
