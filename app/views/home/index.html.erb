@@ -8,67 +8,77 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-md-8 offset-md-2">
-        <div class="col-md-8 mx-auto">
-            <table class="table table-borderless">
-                <tbody>
-                    <tr>
-                        <%if user_signed_in? %>
-                            <div class="col-md-12">
-                                <div class="tweet-wrap">
-                                    <div class="tweet-header">
-                                        <%= image_tag current_user.profile_picture, :class => "avator_profile" %>
-                                        <%= render 'tweets/form', tweet: @tweet %>
-                                    </div>
-                                        
-                                </div>
-                            </div>   
-                        <% end %>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <% @tweets.each do |tweet| %> 
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="tweet-wrap">
-                        <div class="tweet-header">
-                            <%= image_tag tweet.user.profile_picture, :class => "avator" %>
-                            <div class="tweet-header-info">
-                                <strong><%= tweet.user.name %></strong><span> <%= link_to "Created #{time_ago_in_words(tweet.created_at)} ago", tweet %> 
-                                
-                                <p><%= tweet.contents%></p>
-                            </div>
-                        </div>
-                        <div class="tweet-info-counts">
-                            <div class="likes">
-                                
-                                <div>
-                                <%if user_signed_in? %>
-                                    <% pre_like = tweet.likes.find { |like| like.user_id == current_user.id} %>
-                                    <% if pre_like %>
-                                        <%= link_to(tweet_like_path(tweet, pre_like), method: :delete)do%><i class="far fa-heart" style="color:black;"></i><% end %>
-
-                                    <% else %>
-                                        <%= link_to(tweet_likes_path(tweet), method: :post)do%><i class="fas fa-heart" style="color:red;"></i><% end %>
-                                    <% end %>
-                                <% end %>
-                                </div>
-                                <div class="likes-count">
-                                    <%= tweet.likes.count %> <%= (tweet.likes.count) == 1 ? 'Like' : 'Likes'%>
-                                </div>
-                            </div>
-                            <div class="retweets">
-                                <%= link_to(tweet_retweet_path(tweet), method: :post)do%><i class="fas fa-retweet" style="color:red;"></i><% end %>
-                                <div class="retweet-count">
-                                    cant retweets
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>    
+    <div class="col-md-8">
+        <div class="col-md-8 offset-md-2">
+            <div class="col-md-8 mx-auto">
+                <table class="table table-borderless">
+                    <tbody>
+                        <tr>
+                            <%if user_signed_in? %>
+                                <div class="col-md-12">
+                                   <!-- <div class="tweet-wrap">-->
+                                        <div class="tweet-header">
+                                            <%= image_tag current_user.profile_picture, :class => "avator_profile" %>
+                                            <%= render 'tweets/form', tweet: @tweet %>
+                                        </div>
+                                            
+                                   <!-- </div>-->
+                                </div>   
+                            <% end %>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-        <% end %>
-        <%= paginate @tweets %>
+            <% @tweets.each do |tweet| %> 
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="tweet-wrap">
+                            <div class="tweet-header">
+                                <%= image_tag tweet.user.profile_picture, :class => "avator" %>
+                                <div class="tweet-header-info">
+                                    <strong><%= tweet.user.name %></strong><span> <%= link_to "Created #{time_ago_in_words(tweet.created_at)} ago", tweet %> 
+                                    
+                                    <p><%= tweet.contents%></p>
+                                </div>
+                            </div>
+                            <div class="tweet-info-counts">
+                                <div class="likes">
+                                    
+                                    <div>
+                                    <%if user_signed_in? %>
+                                        <% pre_like = tweet.likes.find { |like| like.user_id == current_user.id} %>
+                                        <% if pre_like %>
+                                            <%= link_to(tweet_like_path(tweet, pre_like), method: :delete)do%><i class="far fa-heart" style="color:black;"></i><% end %>
+
+                                        <% else %>
+                                            <%= link_to(tweet_likes_path(tweet), method: :post)do%><i class="fas fa-heart" style="color:red;"></i><% end %>
+                                        <% end %>
+                                    <% end %>
+                                    </div>
+                                    <div class="likes-count">
+                                        <%= tweet.likes.count %> <%= (tweet.likes.count) == 1 ? 'Like' : 'Likes'%>
+                                    </div>
+                                </div>
+                                <div class="retweets">
+                                    <%= link_to(tweet_retweet_path(tweet), method: :post)do%><i class="fas fa-retweet" style="color:red;"></i><% end %>
+                                    <div class="retweet-count">
+                                        cant retweets
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>    
+                </div>
+            <% end %>
+
+            <%= paginate @tweets %>
+        </div>
+    </div>
+    
+ <!-- Al agregar esta columna pierdo responsivo, revisar y arreglar-->  
+    <div class="col-md-4">
+        <%= render 'who-to-follow' %>
     </div>
 </div>
+
+
