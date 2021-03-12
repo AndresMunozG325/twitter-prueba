@@ -9,7 +9,6 @@ class FriendsController < ApplicationController
             redirect_to root_path, notice:"La amistad ya existe"
         else
             add_friend = Friend.new(user:current_user, friend_id:@user.id)    
-            #end
             if add_friend.save
                 redirect_to root_path
             else
@@ -34,5 +33,5 @@ class FriendsController < ApplicationController
     private
     def find_user
         @user = User.find(params[:user_id])
-    en
+    end
 end

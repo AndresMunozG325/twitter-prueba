@@ -9,11 +9,12 @@
         	<%= image_tag user.profile_picture, :class => "avator" %>
             <div class="tweet-header-info">
                 <strong><%= user.name %></strong>
-				<% if current_user.find_friendship(user) == false %>
-					<p><%= link_to 'Follow', user_friends_path(user.id), method: :post, :class => 'btn btn-outline-primary' %></p>
-				<% else %>
-					
-					<p><%= link_to 'Unfollow', user_friend_path(current_user.id, user.id), method: :delete, :class => 'btn btn-outline-danger' %></p>
+				<% if user_signed_in? %>
+					<% if current_user.find_friendship(user) == false %>
+						<p><%= link_to 'Follow', user_friends_path(user.id), method: :post, :class => 'btn btn-outline-primary' %></p>
+					<% else %>
+						<p><%= link_to 'Unfollow', user_friend_path(current_user.id, user.id), method: :delete, :class => 'btn btn-outline-danger' %></p>
+					<% end %>
 				<% end %>
 			</div>
 		</div>
