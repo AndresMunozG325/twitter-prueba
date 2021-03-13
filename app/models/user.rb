@@ -8,6 +8,9 @@ class User < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :friends
 
+  has_many :added_friends, :class_name => 'Friend', :foreign_key => 'user_id'
+
+
   def find_friendship(user)
     if self.friends.where(friend_id:user.id).count > 0
       return true
