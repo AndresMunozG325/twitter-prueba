@@ -10,4 +10,9 @@ class Tweet < ApplicationRecord
     end
     Tweet.where(user_id: id_friends)
   end
+
+  def self.search_tweet(term)
+    Tweet.where("contents LIKE ?", "%#{term}%")
+  end
+  
 end

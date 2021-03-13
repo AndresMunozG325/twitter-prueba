@@ -6,6 +6,8 @@ class TweetsController < ApplicationController
     @tweets = Tweet.all
     @user = current_user
     
+   
+
   end
 
   # GET /tweets/1 or /tweets/1.json

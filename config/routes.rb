@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   get 'tweets/index'
   
   get 'home/index'
+  post '/search', to: 'search#results'
   root to: "home#index"
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
