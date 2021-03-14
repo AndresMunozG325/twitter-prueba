@@ -13,4 +13,13 @@ class ApiController < ActionController::API
     end
     render json: tweet_array
   end
+
+  def search_date
+    date1 = params[:date1].to_date
+    date2 = params[:date2].to_date + 1.day
+    @tweets = Tweet.all.where(created_at: date1..date2)
+    render @tweets
+    
+  end
+
 end

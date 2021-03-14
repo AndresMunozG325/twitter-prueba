@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   end 
   get 'tweets/index'
   get '/api/news', to: 'api#news'
+  get '/api/:date1/:date2', to: 'api#search_date'
   
   get 'home/index'
   post '/search', to: 'search#results'
