@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'api/news'
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   resources :tweets do
@@ -10,6 +11,7 @@ Rails.application.routes.draw do
     resources :friends
   end 
   get 'tweets/index'
+  get '/api/news', to: 'api#news'
   
   get 'home/index'
   post '/search', to: 'search#results'
