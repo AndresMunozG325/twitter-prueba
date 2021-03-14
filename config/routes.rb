@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   get 'tweets/index'
   get '/api/news', to: 'api#news'
   get '/api/:date1/:date2', to: 'api#search_date'
+  post '/api/create', to: 'api#create_tweet'
   
   get 'home/index'
   post '/search', to: 'search#results'

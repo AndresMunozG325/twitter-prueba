@@ -22,4 +22,18 @@ class ApiController < ActionController::API
     
   end
 
+  def create_tweet
+    @user = User.find_by(email: request.headers["X-EMAIL"])
+    if @user.present?
+      @new_tweet = Tweet.new(contents: request.headers["X-CONTENT"], user: @user)
+      if @new_tweet.save
+        render json: @new_tweet
+      else
+        render json: "cannot be saved"
+      end
+    else
+      render json: "User not found"
+    end
+  end
+
 end
