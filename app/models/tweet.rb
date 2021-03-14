@@ -15,4 +15,16 @@ class Tweet < ApplicationRecord
     Tweet.where("contents LIKE ?", "%#{term}%")
   end
   
+  def self.search_my_tweets(x)
+    @my_tweets = Tweet.all
+    my_tweet_id_array = []
+    @my_tweets.each do |my_tweet|
+        if my_tweet.contents.include? "#{x}"
+            my_tweet_id_array << my_tweet.id
+        end
+    end
+    self.where(id: my_tweet_id_array)
+end
+
+  
 end

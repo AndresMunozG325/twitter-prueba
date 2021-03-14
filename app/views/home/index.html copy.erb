@@ -37,16 +37,8 @@
                                 <%= image_tag tweet.user.profile_picture, :class => "avator" %>
                                 <div class="tweet-header-info">
                                     <strong><%= tweet.user.name %></strong><span> <%= link_to "Created #{time_ago_in_words(tweet.created_at)} ago", tweet %> 
-                                    <br>
-                                    <% tweet_array = tweet.contents.split%>
-                                    <% tweet_array.each do |word| %>
-                                        <% if word.start_with?("#") %>
-                                            <% word.slice!(0) %>
-                                            <a href="?hashtag=<%= word %>">#<%= word %></a>
-                                        <% else %>
-                                            <%= word %>
-                                        <% end %>
-                                    <% end %>
+                                    
+                                    <p><%= tweet.contents%></p>
                                 </div>
                             </div>
                             <div class="tweet-info-counts">
