@@ -35,6 +35,7 @@
                                 <div class="tweet-header-info">
                                     <strong><%= tweet.user.name %></strong><span> <%= link_to "Created #{time_ago_in_words(tweet.created_at)} ago", tweet %> 
                                     <br>
+                                    
                                     <% tweet_array = tweet.contents.split%>
                                     <% tweet_array.each do |word| %>
                                         <% if word.start_with?("#") %>
