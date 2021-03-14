@@ -10,6 +10,8 @@ class User < ApplicationRecord
 
   has_many :added_friends, :class_name => 'Friend', :foreign_key => 'user_id'
 
+  before_create :set_api_key
+
 
   def find_friendship(user)
     if self.friends.where(friend_id:user.id).count > 0
@@ -18,4 +20,13 @@ class User < ApplicationRecord
       return false
     end
   end
+
+  def generate_api_key
+    SecureRandom.base58(24)
+  end
+
+  def set_api_key
+    self.api_key = generate_api_key
+  end
+
 end
