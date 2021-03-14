@@ -16,13 +16,10 @@
                         <tr>
                             <%if user_signed_in? %>
                                 <div class="col-md-12">
-                                   <!-- <div class="tweet-wrap">-->
-                                        <div class="tweet-header">
-                                            <%= image_tag current_user.profile_picture, :class => "avator_profile" %>
-                                            <%= render 'tweets/form', tweet: @tweet %>
-                                        </div>
-                                            
-                                   <!-- </div>-->
+                                    <div class="tweet-header">
+                                        <%= image_tag current_user.profile_picture, :class => "avator_profile" %>
+                                        <%= render 'tweets/form', tweet: @tweet %>
+                                    </div>        
                                 </div>   
                             <% end %>
                         </tr>
